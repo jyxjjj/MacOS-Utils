@@ -1,0 +1,6 @@
+{
+    "gitlabUrl": "https://git.{YOUR_COMPANY}.{YOUR_DOMAIN}/api/v4/projects/{PROHECT_ID}/repository/commits?ref_name={YOUR_BRANCH_NAME}",
+    "token": "YOUR GITLAB TOKEN HERE",
+    "method": "inline",
+    "author": "jyxjjj"
+}
