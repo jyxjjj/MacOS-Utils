@@ -5,7 +5,10 @@ let last = '';
 function inline(data) {
     data = data.toString('UTF-8');
     dataObject = JSON.parse(data);
-    prettyJson = JSON.stringify(dataObject, null, 4);
+    if (dataObject.message) {
+        console.log('TOKEN EXPIRED');
+        return;
+    }
     let i = 0;
     for (let obj in dataObject) {
         if (i == 0) {
@@ -21,7 +24,16 @@ function inline(data) {
 function notify(data) {
     data = data.toString('UTF-8');
     dataObject = JSON.parse(data);
-    prettyJson = JSON.stringify(dataObject, null, 4);
+    if (dataObject.message) {
+        notifier.notify({
+            'title': '提交',
+            'subtitle': '最新提交',
+            'message': dataObject.message,
+            sound: process.platform == 'darwin' ? 'Breeze' : true,
+            timeout: 3600,
+        });
+        return;
+    }
     let tmpLast = '';
     for (let obj in dataObject) {
         let id = dataObject[obj].short_id;
@@ -45,7 +57,9 @@ function notify(data) {
 }
 function ls(method) {
     https.get(env.gitlabUrl, { headers: { "PRIVATE-TOKEN": env.token, }, },
-        res => { res.on('data', method); }
-    );
+        res => {
+            res.on('data', method);
+        }
+    ).on('error', console.log);
 }
 ls(env.method == 'inline' ? (process.platform == 'darwin' ? inline : notify) : notify);
