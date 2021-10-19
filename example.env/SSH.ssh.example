@@ -1,2 +1,2 @@
-1.dev.local | bash=ssh param0=root@1.dev.local | font='JetBrains Mono NL'
-2.dev.local | bash=ssh param0=root@2.dev.local | font='JetBrains Mono NL'
+1.dev.desmg.com | bash=ssh param0=root@1.dev.desmg.com | font='JetBrains Mono NL'
+2.dev.desmg.com | bash=ssh param0=root@2.dev.desmg.com | font='JetBrains Mono NL'
