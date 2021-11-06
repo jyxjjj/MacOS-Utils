@@ -56,9 +56,18 @@ function notify(data) {
     }
 }
 function ls(method) {
-    https.get(env.gitlabUrl, { headers: { "PRIVATE-TOKEN": env.token, }, },
+    let data = '';
+    https.get(
+        env.gitlabUrl,
+        {
+            headers: {
+                "PRIVATE-TOKEN": env.token,
+                "Connection": 'closed',
+            },
+        },
         res => {
-            res.on('data', method);
+            res.on('data', (respData) => { data += respData; });
+            res.on('end', () => { method(data); });
         }
     ).on('error', console.log);
 }
