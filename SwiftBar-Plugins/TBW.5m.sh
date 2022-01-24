@@ -26,14 +26,14 @@ if [[ "$result" == *"TB"* ]] {
     resultInt=${result% TB*}
     # raw * 512 / (1000 ^ 3) = TB
     # 要算 每日 GB 数 所以要 乘 1000
-    echo -e "$(( int($(($resultInt * 1000))) / $(($(($(date +%s) - 1630425600)) / 86400)))) GB/Day | font='JetBrains Mono NL'"
+    echo -e "$(( int($(($resultInt * 1000))) / $(($(($(date +%s) - 1642564800)) / 86400)))) GB/Day | font='JetBrains Mono NL'"
 } else {
     # 如果是 GB 则
     # 获取数字部分 去掉 空格 和 GB
     resultInt=${result% GB*}
     # raw * 512 / (1000 ^ 3) = TB
     # 此处数字部分已是 GB 所以 取整后直接参与计算
-    echo -e "$(( int($(($resultInt))) / $(($(($(date +%s) - 1630425600)) / 86400)))) GB/Day | font='JetBrains Mono NL'"
+    echo -e "$(( int($(($resultInt))) / $(($(($(date +%s) - 1642564800)) / 86400)))) GB/Day | font='JetBrains Mono NL'"
 }
 echo "---"
 # 版权信息
